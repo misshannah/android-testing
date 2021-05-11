@@ -40,21 +40,21 @@ class DefaultTasksRepository(
         private val tasksRemoteDataSource: TasksDataSource,
         private val tasksLocalDataSource: TasksDataSource,
         private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO) : TasksRepository {
-    companion object {
-        @Volatile
-         var INSTANCE: DefaultTasksRepository? = null
-
-         fun getRepository(app: Application): DefaultTasksRepository {
-            return INSTANCE ?: synchronized(this) {
-                val database = Room.databaseBuilder(app,
-                        ToDoDatabase::class.java, "Tasks.db")
-                        .build()
-                DefaultTasksRepository(TasksRemoteDataSource, TasksLocalDataSource(database.taskDao())).also {
-                    INSTANCE = it
-                }
-            }
-        }
-    }
+//    companion object {
+//        @Volatile
+//         var INSTANCE: DefaultTasksRepository? = null
+//
+//         fun getRepository(app: Application): DefaultTasksRepository {
+//            return INSTANCE ?: synchronized(this) {
+//                val database = Room.databaseBuilder(app,
+//                        ToDoDatabase::class.java, "Tasks.db")
+//                        .build()
+//                DefaultTasksRepository(TasksRemoteDataSource, TasksLocalDataSource(database.taskDao())).also {
+//                    INSTANCE = it
+//                }
+//            }
+//        }
+//    }
 
 //        @Volatile
 //        private var INSTANCE: DefaultTasksRepository? = null
